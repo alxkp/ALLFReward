@@ -5,11 +5,9 @@ import re
 from time import sleep
 from cerebras.cloud.sdk import Cerebras
 
-# Function to convert state to a text prompt for Double Pendulum
 def state_to_prompt(observation):
     cart_pos, sin_pole1, sin_pole2, cos_pole1, cos_pole2, cart_vel, ang_vel1, ang_vel2, constraint_force = observation
 
-    # Calculate angles from sine and cosine values
     angle1 = np.arctan2(sin_pole1, cos_pole1)
     angle2 = np.arctan2(sin_pole2, cos_pole2)
 
@@ -30,7 +28,6 @@ def state_to_prompt(observation):
     Think step by step beforehand, but your final answer must include a single number giving the force.
     """
 
-# Function for LLaMa model interaction
 def llama_generate(prompt):
     chat_completion = client.chat.completions.create(
         messages=[
@@ -53,16 +50,14 @@ def llama_generate(prompt):
             if -1 <= float_num <= 1:
                 valid_numbers.append(float_num)
         except ValueError:
-            continue  # Skip any strings that can't be converted to float
+            continue  
     
     if valid_numbers:
-        # Return the last valid number found
         return valid_numbers[-1]
     else:
         print("No valid action found in LLaMa response. Using random action.")
         return np.random.uniform(-1, 1)
 
-# Main simulation loop
 def run_double_pendulum_simulation(num_episodes=5, max_steps=1000):
     env = gym.make("InvertedDoublePendulum-v5", render_mode="human")
     
@@ -71,13 +66,10 @@ def run_double_pendulum_simulation(num_episodes=5, max_steps=1000):
         total_reward = 0
         
         for step in range(max_steps):
-            # Convert the observation to a prompt
             prompt = state_to_prompt(observation)
             
-            # Get action from LLaMa model and parse the response
             action = llama_generate(prompt)
             
-            # Take the action in the environment
             observation, reward, terminated, truncated, info = env.step([action])
             total_reward += reward
             
@@ -95,10 +87,8 @@ def run_double_pendulum_simulation(num_episodes=5, max_steps=1000):
     
     env.close()
 
-# Run the simulation
 if __name__ == "__main__":
     client = Cerebras(
-        # This is the default and can be omitted
         api_key=os.environ.get("CEREBRAS_API_KEY"),
     )
     run_double_pendulum_simulation()
