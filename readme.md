@@ -35,6 +35,57 @@ Our scripts are located at `scripts/cartpole.py` and `scripts/double_pendulum.py
 We give some preliminary results below.
 
 
+![Cartpole LLM Policy](cartpole_LLM_policy.mov)
+
+![Double Pendulum LLM Policy](double_pendulum_LLM_policy.mov)
+
+
+We see that the cartpole system, as a significantly more linear system than the double pendulum is able to be controlled directly by the LLM, whereas the much more nonlinear double pendulum is significantly more challenging for an LLM to control zero shot.
+
+We give some example prompts below, and full results are located in `results/`
+
+
+For the single cartpole:
+```
+---
+
+    The following are a list of state observations of a cartpole system.  Please control it to stand upright.
+
+    Upright is an angle of 0, and angular velocity of 0; and any x value is acceptable.
+
+    Cart position: -0.00
+    Cart velocity: -0.01
+    Pole angle: 0.00
+    Pole angular velocity: -0.00
+
+    What force should be applied to the cart? Respond with a number between -1 (full left) and 1 (full right).
+
+    Think step by step beforehand, but your final answer must include a single number giving the force.
+
+----
+Step 0: Action = 0.50, Reward = 1.00
+```
+
+For the double cartpole
+```
+    The following are state observations of a double inverted pendulum system. Please control it to stand upright.
+    Upright is when both poles are vertical (angles close to 0 or π) and angular velocities are 0.
+
+    1. Cart position: 0.25 m
+    2. Angle of first pole: -0.20 radians
+    3. Angle of second pole: 0.38 radians
+    4. Cart velocity: 3.42 m/s
+    5. Angular velocity of first pole: -6.34 radians/second
+    6. Angular velocity of second pole: 7.34 radians/second
+    7. Constraint force on cart: 0.00 N
+
+    What force should be applied to the cart? Respond with a number between -1 (full left) and 1 (full right).
+
+    Think step by step beforehand, but your final answer must include a single number giving the force.
+
+-----
+Step 2: Action = 1.00, Reward = 8.91
+```
 
 
 
