@@ -35,9 +35,14 @@ Our scripts are located at `scripts/cartpole.py` and `scripts/double_pendulum.py
 We give some preliminary results below.
 
 
-![Cartpole LLM Policy](cartpole_LLM_policy.mov)
+Cartpole LLM Policy:
 
-![Double Pendulum LLM Policy](double_pendulum_LLM_policy.mov)
+https://github.com/user-attachments/assets/0fdb9453-caaa-4015-9ba9-65c9ea77e9d0
+
+
+Double Pendulum LLM Policy
+
+https://github.com/user-attachments/assets/5dc041c0-449b-465a-ba01-ceee0fbd739e
 
 
 We see that the cartpole system, as a significantly more linear system than the double pendulum is able to be controlled directly by the LLM, whereas the much more nonlinear double pendulum is significantly more challenging for an LLM to control zero shot.
