@@ -1,4 +1,4 @@
-# ALLFWorld
+## ALLFWorld
 
 Early stage prototype of research codebase to use langauge models for intermediate feedback in textworld environments
 
@@ -32,15 +32,15 @@ Here, we directly use language models as a mechanism to control classic Reinforc
 
 Our scripts are located at `scripts/cartpole.py` and `scripts/double_pendulum.py`
 
-We give some preliminary results below.
+We give some preliminary results below.  NOTE:  We slowed down each step to be 1 per 100ms due to rate limits on the inference API, as well as interpretability; we were able to run this significantly more quickly, but that faster policy is harder to interpret with the rate limits in play.
 
 
-Cartpole LLM Policy:
+### Cartpole LLM Policy:
 
 https://github.com/user-attachments/assets/0fdb9453-caaa-4015-9ba9-65c9ea77e9d0
 
 
-Double Pendulum LLM Policy
+### Double Pendulum LLM Policy
 
 https://github.com/user-attachments/assets/5dc041c0-449b-465a-ba01-ceee0fbd739e
 
@@ -49,6 +49,12 @@ We see that the cartpole system, as a significantly more linear system than the 
 
 We give some example prompts below, and full results are located in `results/`
 
+
+## Overview of Process Loop.
+
+![IMG_0371](https://github.com/user-attachments/assets/059f9e72-8733-4ac5-a107-5efd333b81f1)
+
+We design a custom prompt for each environment, as variations on a pattern, letting the language model provide policy updates to each.  Example prompts and actions after parsing are given below for both environments tested.
 
 For the single cartpole:
 ```
@@ -94,6 +100,8 @@ Step 2: Action = 1.00, Reward = 8.91
 
 
 
+
+
 ## Credit:
 
 Building off of scripts in ALfworld codebase, credit: 
@@ -111,5 +119,12 @@ Currently debuging Alfword training code and integration with Cerebras
   booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
   year = {2021},
   url = {https://arxiv.org/abs/2010.03768}
+
+@article{ma2023eureka,
+  title   = {Eureka: Human-Level Reward Design via Coding Large Language Models},
+  author  = {Yecheng Jason Ma and William Liang and Guanzhi Wang and De-An Huang and Osbert Bastani and Dinesh Jayaraman and Yuke Zhu and Linxi Fan and Anima Anandkumar},
+  year    = {2023},
+  journal = {arXiv preprint arXiv: Arxiv-2310.12931}
+}
 }
 ```
