@@ -24,13 +24,26 @@ ASSISTANT 2068 T/s
 3
 ```
 
+## Direct Control with Language Model Policies
+
+Language models have shown their ability to generate high quality reward functions in Eureka (Ma, et al 2024)
+
+Here, we directly use language models as a mechanism to control classic Reinforcement Learning problems such as an inverted pendulum, and a doubly inverted pendulum.
+
+Our scripts are located at `scripts/cartpole.py` and `scripts/double_pendulum.py`
+
+We give some preliminary results below.
+
+
+
+
 
 ## Credit:
 
 Building off of scripts in ALfworld codebase, credit: 
 
 
-Currently debuging Alfwor
+Currently debuging Alfword training code and integration with Cerebras
 
 ```
 @inproceedings{ALFWorld20,
